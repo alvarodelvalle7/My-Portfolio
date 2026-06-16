@@ -1,0 +1,82 @@
+---
+import { Icon } from "astro-icon/components";
+import { navLinks } from "../data/navigation";
+
+// Socials
+const socialsTitle = "Socials";
+const socials = [
+	{ label: "Github", href: "https://github.com/alvarodelvalle7" },
+	{ label: "Linkedin", href: "linkedin.com/in/alvaro-del-valle-2a43062b1" },
+];
+
+// Navigation
+const navTitle = "Navigation";
+
+// Back to top
+const backToTopLabel = "Back to top";
+
+// Copyright
+const author = "Álvaro del Valle";
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t-2 border-primary">
+
+	<!-- Main row -->
+	<div class="max-w-7xl mx-auto px-6 py-10 lg:py-12 flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+
+		<!-- Socials -->
+		<nav aria-label="Social links" class="flex flex-col gap-3">
+			<h2 class="font-semibold text-primary tracking-tighter">{socialsTitle}</h2>
+			<ul class="flex flex-col gap-2">
+				{socials.map((social) => (
+					<li>
+						<a
+							href={social.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="font-extralight text-text/70 transition-colors duration-300 hover:text-primary focus:outline-none focus-visible:text-primary"
+						>
+							{social.label}
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+
+		<!-- Navigation -->
+		<nav aria-label="Footer navigation" class="flex flex-col gap-3">
+			<h2 class="font-semibold text-primary tracking-tighter">{navTitle}</h2>
+			<ul class="flex flex-col gap-2">
+				{navLinks.map((link) => (
+					<li>
+						<a
+							href={link.href}
+							class="font-extralight text-text/70 transition-colors duration-300 hover:text-primary focus:outline-none focus-visible:text-primary"
+						>
+							{link.label}
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+
+		<!-- Back to top -->
+		<a
+			href="#"
+			class="self-start inline-flex items-center gap-2 border-2 border-primary/30 rounded-sm px-8 py-3 font-semibold text-base text-text tracking-tighter transition-all duration-300 hover:bg-primary hover:text-text focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+		>
+			{backToTopLabel}
+			<Icon name="mdi:arrow-up" class="w-5 h-5" />
+		</a>
+
+	</div>
+
+	<!-- Bottom bar -->
+	<div class="border-t border-primary/30">
+		<p class="max-w-7xl mx-auto px-6 py-6 text-center font-extralight text-primary">
+			{year}. All rights reserved. {author}
+		</p>
+	</div>
+
+</footer>

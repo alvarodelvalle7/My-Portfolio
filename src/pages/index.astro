@@ -1,0 +1,366 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import "../styles/global.css";
+import heroImage from "../assets/perfil_alvaro.webp";
+import blackPantherImage from "../assets/blackpantherwebsite.png";
+import portfolioPabloImage from "../assets/portfoliopablo.png";
+
+// Title text
+const pageTitle = "Portfolio Álvaro del Valle";
+
+// Hero text
+const titleNameHero = "Alvaro del Valle";
+const subTitleHero = "Full-Stack Software Developer";
+const descriptionHero = "I craft high-performance mobile and web experiences where clean architecture meets bold, futuristic aesthetics. With a strong focus on usability, scalability, and detail, I transform complex ideas into intuitive digital products that feel fast, modern, and purposeful.";
+const heroButton = "Hire Me";
+const contactHref = "mailto:alvaro.7.zurdo@gmail.com";
+const iconGitHub = "mdi:github";
+const iconLinkedin = "mdi:linkedin";
+const socialLinks = [
+  {
+    href: "https://github.com/alvarodelvalle7",
+    icon: iconGitHub,
+    label: "GitHub",
+	className: ""
+  },
+  {
+    href: "linkedin.com/in/alvaro-del-valle-2a43062b1",
+    icon: iconLinkedin,
+    label: "LinkedIn",
+	className: "text-[#0A66C2]"
+  }
+];
+
+// About text
+const aboutTitle = "About me";
+const aboutSubtitle = "Behind the Code";
+const aboutCards = [
+  {
+    number: "01/",
+    title: "Handball Player",
+    description: "For years, handball was a fundamental part of my life. Competing at a high level taught me discipline, resilience, teamwork, and the ability to perform under pressure. These experiences shaped my mindset and laid the foundation for the way I approach challenges today."
+  },
+  {
+    number: "02/",
+    title: "Software Developer",
+    description: "Driven by curiosity and a passion for technology, I transitioned into software development. Today, I build modern web applications and Android solutions, combining technical expertise with a problem-solving mindset to create fast, intuitive, and meaningful digital experiences."
+  }
+];
+
+// Projects text
+const projectTitle = "Projects";
+const projectSubtitle = "A selection of projects that showcase my skills, creativity, and passion for building digital experiences";
+const projectCards = [
+  {
+    id: "Project 1",
+    title: "Black Panther Fitness",
+    image: blackPantherImage,
+	githubIcon: "mdi:github",
+    websiteIcon: "mdi:web",
+	githubUrl: "https://github.com/alvarodelvalle7/Landing_Page_Seke",
+    webUrl: "https://blackpantherfitness.vercel.app/"
+  },
+  {
+    id: "Project 2",
+    title: "Portfolio Pablo del Rincón",
+    image: portfolioPabloImage,
+	githubIcon: "mdi:github",
+    websiteIcon: "mdi:web",
+	githubUrl: "https://github.com/alvarodelvalle7/Portfolio-PDR",
+    webUrl: "https://www.pablodelrincon.com/"
+  }
+];
+
+// Services text
+const serviceTitle = "Services";
+const serviceSubtitle = "How I can help you bring your ideas to life";
+const services = [
+  {
+	icon: "mdi:web",
+    title: "Web Development",
+    description:
+      "From high-performance landing pages to scalable e-commerce platforms and custom SaaS solutions, I build modern web applications focused on performance, usability, and long-term scalability. Using technologies such as Astro, Angular, and Spring Boot, I transform ideas into fast, reliable, and impactful digital products."
+  },
+  {
+	icon: "logos:android-icon",
+    title: "Android Development",
+    description:
+      "Native Android applications developed with Kotlin and SQLiteOpenHelper, providing reliable mobile solutions with efficient local data management. Designed to store, organize, and access information directly on the device, these applications deliver fast performance, offline functionality, and a seamless user experience."
+  },
+  {
+    icon: "skill-icons:figma-light",
+    title: "UI/UX Design",
+    description:
+      "Custom website designs created in Figma, transforming ideas into intuitive, visually engaging, and user-centered digital experiences. From wireframes and layouts to high-fidelity prototypes, each design is crafted with a strong focus on usability, consistency, and modern aesthetics."
+  }
+];
+
+// Stack text
+const stackTitle = "Stack";
+const stackDescription = "Technologies I use to build modern digital products";
+const stackCards = [
+  {
+    title: "Java",
+    icon: "skill-icons:java-dark",
+    description:
+      "Backend application development using Java, Hibernate, CRUD operations, and Spring Boot fundamentals."
+  },
+  {
+    title: "Kotlin",
+    icon: "skill-icons:kotlin-dark",
+    description:
+      "Native Android application development with local data persistence using SQLiteOpenHelper."
+  },
+  {
+    title: "TypeScript",
+    icon: "skill-icons:typescript",
+    description:
+      "Development of Astro projects using static typing to write safer and more maintainable code."
+  },
+  {
+    title: "JavaScript",
+    icon: "skill-icons:javascript",
+    description:
+      "DOM manipulation and animation development to create dynamic and interactive web experiences."
+  },
+  {
+    title: "Astro",
+    icon: "skill-icons:astro",
+    description:
+      "Development of landing pages and websites optimized for performance and SEO."
+  },
+  {
+    title: "Claude Code",
+    icon: "mdi:robot-outline",
+    description:
+      "Leveraging AI to accelerate development, documentation, and technical problem-solving."
+  },
+  {
+    title: "TailwindCSS",
+    icon: "skill-icons:tailwindcss-dark",
+    description:
+      "Designing modern, responsive, and optimized user interfaces for any device."
+  },
+  {
+    title: "MongoDB",
+    icon: "skill-icons:mongodb",
+    description:
+      "Data storage and retrieval using NoSQL database systems."
+  },
+  {
+    title: "PostgreSQL",
+    icon: "skill-icons:postgresql-dark",
+    description:
+      "Design and management of relational databases using SQL queries."
+  },
+  {
+    title: "Git",
+    icon: "skill-icons:git",
+    description:
+      "Version control, branch management, and collaboration across software projects."
+  },
+  {
+    title: "HTML",
+    icon: "skill-icons:html",
+    description:
+      "Semantic and accessible structuring of web pages."
+  },
+  {
+    title: "Figma",
+    icon: "skill-icons:figma-dark",
+    description:
+      "Designing web interfaces, prototypes, and visual systems before bringing them to code."
+  }
+];
+
+// Contact text
+const contactTitle = "Let's work together";
+const contactSubtitle = "Have a project in mind or just want to say hi? I'm always open to new opportunities and collaborations.";
+const contactButton = "Get in touch";
+const contactEmail = "alvaro.7.zurdo@gmail.com";
+---
+
+<Layout title={pageTitle}>
+
+	<main>
+
+		<!-- Section Hero -->
+		<section class="relative min-h-screen flex flex-col justify-center lg:flex-row lg:justify-center lg:gap-20 items-center max-w-7xl mx-auto px-6">
+
+			<!-- Hero text -->
+			<div data-reveal class="flex flex-col max-w-xl gap-2 order-2 lg:order-1">
+				<div class="flex flex-col gap-2">
+					<span class="self-start flex items-center justify-center gap-2 py-1 px-4 bg-primary/30 rounded-full font-semibold text-[10px] lg:text-xs text-primary"><span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>Available for Work</span>
+					<h1 class="font-semibold text-gradient text-5xl md:text-6xl lg:text-7xl tracking-tighter">{titleNameHero}</h1>
+				</div>
+				<div class="space-y-4">
+					<h2 class="font-semibold text-primary text-base md:text-xl lg:text-2xl tracking-tighter">{subTitleHero}</h2>
+					<p class="font-extralight text-base lg:text-lg text-text/80">{descriptionHero}</p>
+					<div class="flex flex-wrap items-center gap-6">
+						<a href={contactHref} class="inline-flex items-center justify-center px-16 py-4 rounded-sm border border-primary text-primary font-semibold text-base lg:text-lg transition-all duration-300 hover:bg-primary hover:text-text focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">{heroButton}</a>
+						{
+						socialLinks.map((social) => (
+							<a
+							href={social.href}
+							aria-label={social.label}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="transition-transform duration-300 hover:-translate-y-1"
+							>
+							<Icon name={social.icon} class={`w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 ${social.className}`} />
+							</a>
+						))
+						}
+					</div>
+				</div>
+			</div>
+
+			<div class="relative order-1 lg:order-2 w-70 md:w-105 lg:w-175">
+				<!-- Image -->
+				<Image
+					src={heroImage}
+					alt="Profile image"
+					class="w-full object-contain grayscale brightness-50 mask-[linear-gradient(to_top,transparent_25%,black_75%,black_100%)] [-webkit-mask-image:linear-gradient(to_top,transparent_25%,black_75%,black_100%)]"
+					loading="eager"
+					/>
+				<div class="absolute inset-0 bg-[#808FFF]/10 mix-blend-color pointer-events-none"></div>
+			</div>
+
+		</section>
+
+		<!-- Section About -->
+		<section id="about" class="scroll-mt-24 py-20 lg:py-28">
+			<div class="max-w-7xl mx-auto px-6">
+
+				<!-- Heading -->
+				<div data-reveal class="flex flex-col items-center text-center gap-3 mb-12 lg:mb-16">
+					<span class="font-semibold text-sm uppercase tracking-[0.2em] text-primary">{aboutTitle}</span>
+					<h2 class="font-semibold text-gradient text-4xl md:text-5xl lg:text-6xl tracking-tighter">{aboutSubtitle}</h2>
+				</div>
+
+				<!-- Cards -->
+				<div class="grid gap-6 md:grid-cols-2">
+					{aboutCards.map((card, index) => (
+						<article data-reveal style={`--reveal-delay: ${index * 80}ms`} class="rounded-sm border border-primary/20 bg-surface p-8 lg:p-10 transition-colors duration-300 hover:border-primary/50">
+							<span class="block font-black text-5xl lg:text-6xl text-primary/30">{card.number}</span>
+							<h3 class="mt-4 font-semibold text-2xl tracking-tighter">{card.title}</h3>
+							<p class="mt-3 font-extralight leading-relaxed text-text/80">{card.description}</p>
+						</article>
+					))}
+				</div>
+
+			</div>
+		</section>
+
+		<!-- Section Projects -->
+		<section id="projects" class="scroll-mt-24 py-20 lg:py-28">
+			<div class="max-w-7xl mx-auto px-6">
+
+				<!-- Heading -->
+				<div data-reveal class="flex flex-col items-center text-center gap-3 mb-12 lg:mb-16">
+					<h2 class="font-semibold text-gradient text-4xl md:text-5xl lg:text-6xl tracking-tighter">{projectTitle}</h2>
+					<p class="max-w-2xl font-extralight text-base lg:text-lg text-text/80">{projectSubtitle}</p>
+				</div>
+
+				<!-- Cards -->
+				<div class="grid gap-6 md:grid-cols-2">
+					{projectCards.map((project, index) => (
+						<article data-reveal style={`--reveal-delay: ${index * 80}ms`} class="group flex flex-col overflow-hidden rounded-sm border border-primary/20 bg-surface transition-all duration-300 hover:border-primary/50">
+							<div class="relative aspect-video overflow-hidden">
+								<Image
+									src={project.image}
+									alt={project.title}
+									class="w-full h-full object-cover grayscale brightness-75 transition-all duration-500 group-hover:grayscale-0 group-hover:brightness-100"
+								/>
+								<div class="absolute inset-0 bg-primary/20 mix-blend-color pointer-events-none transition-opacity duration-500 group-hover:opacity-0"></div>
+							</div>
+							<div class="flex items-center justify-between gap-4 p-6">
+								<h3 class="font-semibold text-xl tracking-tighter">{project.title}</h3>
+								<div class="flex items-center gap-4 text-primary">
+									<a href={project.githubUrl} aria-label={`${project.title} on GitHub`} target="_blank" rel="noopener noreferrer" class="transition-colors duration-300 hover:text-text">
+										<Icon name={project.githubIcon} class="w-7 h-7" />
+									</a>
+									<a href={project.webUrl} aria-label={`${project.title} live site`} target="_blank" rel="noopener noreferrer" class="transition-colors duration-300 hover:text-text">
+										<Icon name={project.websiteIcon} class="w-7 h-7" />
+									</a>
+								</div>
+							</div>
+						</article>
+					))}
+				</div>
+
+			</div>
+		</section>
+
+		<!-- Section Services -->
+		<section id="services" class="scroll-mt-24 py-20 lg:py-28">
+			<div class="max-w-7xl mx-auto px-6">
+
+				<!-- Heading -->
+				<div data-reveal class="flex flex-col items-center text-center gap-3 mb-12 lg:mb-16">
+					<h2 class="font-semibold text-gradient text-4xl md:text-5xl lg:text-6xl tracking-tighter">{serviceTitle}</h2>
+					<p class="max-w-2xl font-extralight text-base lg:text-lg text-text/80">{serviceSubtitle}</p>
+				</div>
+
+				<!-- Cards -->
+				<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+					{services.map((service, index) => (
+						<article data-reveal style={`--reveal-delay: ${index * 80}ms`} class="flex flex-col gap-4 rounded-sm border border-primary/20 bg-surface p-8 transition-colors duration-300 hover:border-primary/50">
+							<Icon name={service.icon} class="w-12 h-12" />
+							<h3 class="font-semibold text-2xl tracking-tighter">{service.title}</h3>
+							<p class="font-extralight leading-relaxed text-text/80">{service.description}</p>
+						</article>
+					))}
+				</div>
+
+			</div>
+		</section>
+
+		<!-- Section Stack -->
+		<section id="stack" class="scroll-mt-24 py-20 lg:py-28">
+			<div class="max-w-7xl mx-auto px-6">
+
+				<!-- Heading -->
+				<div data-reveal class="flex flex-col items-center text-center gap-3 mb-12 lg:mb-16">
+					<h2 class="font-semibold text-gradient text-4xl md:text-5xl lg:text-6xl tracking-tighter">{stackTitle}</h2>
+					<p class="max-w-2xl font-extralight text-base lg:text-lg text-text/80">{stackDescription}</p>
+				</div>
+
+				<!-- Cards -->
+				<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+					{stackCards.map((tech, index) => (
+						<article data-reveal style={`--reveal-delay: ${(index % 4) * 80}ms`} class="flex flex-col gap-3 rounded-sm border border-primary/20 bg-surface p-6 transition-all duration-300 hover:border-primary/50 hover:-translate-y-1">
+							<div class="flex items-center gap-3">
+								<Icon name={tech.icon} class="w-8 h-8" />
+								<h3 class="font-semibold text-lg tracking-tighter">{tech.title}</h3>
+							</div>
+							<p class="font-extralight text-sm leading-relaxed text-text/70">{tech.description}</p>
+						</article>
+					))}
+				</div>
+
+			</div>
+		</section>
+
+		<!-- Section Contact -->
+		<section id="contact" class="scroll-mt-24 py-20 lg:py-28">
+			<div class="max-w-3xl mx-auto px-6">
+				<div data-reveal class="flex flex-col items-center gap-6 rounded-sm border border-primary/20 bg-surface px-6 py-14 text-center lg:px-12 lg:py-20">
+					<h2 class="font-semibold text-gradient text-4xl md:text-5xl lg:text-6xl tracking-tighter">{contactTitle}</h2>
+					<p class="max-w-xl font-extralight text-base lg:text-lg text-text/80">{contactSubtitle}</p>
+					<a
+						href={`mailto:${contactEmail}`}
+						class="inline-flex items-center justify-center gap-2 px-12 py-4 rounded-sm border-2 border-primary/30 font-semibold text-base lg:text-lg text-primary tracking-tighter transition-all duration-300 hover:bg-primary hover:text-text focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+					>
+						<Icon name="mdi:email-outline" class="w-5 h-5" />
+						{contactButton}
+					</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+</Layout>

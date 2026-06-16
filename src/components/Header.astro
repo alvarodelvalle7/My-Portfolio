@@ -1,0 +1,127 @@
+---
+import { Icon } from "astro-icon/components";
+import { navLinks } from "../data/navigation";
+
+// Contact button
+const contactLabel = "Contact";
+const contactHref = "mailto:alvaro.7.zurdo@gmail.com";
+
+// Mobile menu icons
+const menuIcon = "mdi:menu";
+const closeIcon = "mdi:close";
+---
+
+<header class="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
+	<nav class="flex items-center justify-between gap-4 max-w-7xl mx-auto px-6 py-6">
+
+		<!-- Logo -->
+		<a href="#" class="font-black text-3xl md:text-4xl lg:text-5xl text-gradient" aria-label="Home">AV</a>
+
+		<!-- Desktop navigation -->
+		<ul class="hidden lg:flex items-center gap-16 border-2 border-primary/30 bg-primary/10 rounded-sm px-8 py-3">
+			{navLinks.map((link) => (
+				<li>
+					<a
+						href={link.href}
+						class="font-semibold text-base text-primary tracking-tighter transition-colors duration-300 hover:text-text focus:outline-none focus-visible:text-text"
+					>
+						{link.label}
+					</a>
+				</li>
+			))}
+		</ul>
+
+		<!-- Desktop contact button -->
+		<a
+			href={contactHref}
+			class="hidden lg:inline-block font-semibold text-base text-primary tracking-tighter border-2 border-primary/30 rounded-sm px-10 py-3 transition-all duration-300 hover:text-text hover:bg-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+		>
+			{contactLabel}
+		</a>
+
+		<!-- Hamburger toggle (mobile & tablet) -->
+		<button
+			id="menu-toggle"
+			type="button"
+			class="lg:hidden flex items-center justify-center text-primary transition-colors duration-300 hover:text-text focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+			aria-label="Open menu"
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+		>
+			<span data-icon-open>
+				<Icon name={menuIcon} class="w-8 h-8" />
+			</span>
+			<span data-icon-close class="hidden">
+				<Icon name={closeIcon} class="w-8 h-8" />
+			</span>
+		</button>
+	</nav>
+
+	<!-- Mobile & tablet menu (full screen below the header) -->
+	<div
+		id="mobile-menu"
+		data-open="false"
+		class="lg:hidden absolute inset-x-0 top-full h-[calc(100dvh-100%)] overflow-y-auto border-t border-primary/20 bg-background/95 backdrop-blur-md transition-all duration-300 opacity-0 invisible data-[open=true]:opacity-100 data-[open=true]:visible"
+	>
+		<div class="flex h-full flex-col items-center justify-center gap-16 px-6">
+			<ul class="flex flex-col items-center gap-16">
+				{navLinks.map((link) => (
+					<li>
+						<a
+							href={link.href}
+							class="block font-semibold text-2xl text-primary tracking-tighter transition-colors duration-300 hover:text-text focus:outline-none focus-visible:text-text"
+						>
+							{link.label}
+						</a>
+					</li>
+				))}
+			</ul>
+			<a
+				href={contactHref}
+				class="w-full text-center font-semibold text-2xl text-primary tracking-tighter border-2 border-primary/30 rounded-sm py-4 transition-all duration-300 hover:text-text hover:bg-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+			>
+				{contactLabel}
+			</a>
+		</div>
+	</div>
+</header>
+
+<script>
+	function initHeaderMenu() {
+		const toggle = document.getElementById("menu-toggle");
+		const menu = document.getElementById("mobile-menu");
+		if (!toggle || !menu) return;
+
+		// Guard against double-binding when the header persists across view transitions.
+		if (toggle.dataset.bound === "true") return;
+		toggle.dataset.bound = "true";
+
+		const openIcon = toggle.querySelector<HTMLElement>("[data-icon-open]");
+		const closeIcon = toggle.querySelector<HTMLElement>("[data-icon-close]");
+		const links = menu.querySelectorAll("a");
+
+		const setMenu = (open: boolean) => {
+			menu.dataset.open = String(open);
+			toggle.setAttribute("aria-expanded", String(open));
+			toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+			openIcon?.classList.toggle("hidden", open);
+			closeIcon?.classList.toggle("hidden", !open);
+			document.body.classList.toggle("overflow-hidden", open);
+		};
+
+		toggle.addEventListener("click", () => {
+			setMenu(menu.dataset.open !== "true");
+		});
+
+		// Close after navigating to a section.
+		links.forEach((link) => link.addEventListener("click", () => setMenu(false)));
+
+		// Reset state when resizing up to the desktop layout.
+		window.addEventListener("resize", () => {
+			if (window.innerWidth >= 1024) setMenu(false);
+		});
+	}
+
+	initHeaderMenu();
+	document.addEventListener("astro:after-swap", initHeaderMenu);
+</script>
